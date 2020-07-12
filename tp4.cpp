@@ -5,34 +5,34 @@ typedef struct
 {
     int TareaID;//Numerado en ciclo iterativo
     char *Descripcion;
-    int Duracion;// entre 10 – 100
-}T_tarea;
+    int Duracion;// entre 10 â€“ 100
+}Tar;
 int aleatorio(int min,int max);
-void cargar(T_tarea **tareas,int cant_tareas);
-void mostrar(T_tarea ** tareas,int cant_tareas);
-//void ord(T ** tareas,T ** tareas_reali,int cant_tareas);
+void cargar(Tar **tareas,int canTars);
+void mostrar(Tar ** tareas,int canTars);
+void ord(Tar ** tareas,Tar ** tareas_reali,int canTars);
 
 
 int main()
 {    
-    int cant_tareas;
+    int canTars;
     printf("ingrese la cantidad de tareas");
-    scanf("%d",&cant_tareas);
-    T_tarea **pendientes=(T_tarea **)malloc(cant_tareas * sizeof(T_tarea*));   
-    T_tarea **realizadas=(T_tarea **)malloc(cant_tareas * sizeof(T_tarea*));
-    cargar(pendientes,cant_tareas);
-    printf("TAREAS PENDIENTES");
-    mostrar(pendientes,cant_tareas);
-    printf("TAREAS REALIZADAS");
-    mostrar(realizadas,cant_tareas);
+    scanf("%d",&canTars);
+    Tar **pendientes=(Tar **)malloc(canTars * sizeof(Tar*));   
+    Tar **realizadas=(Tar **)malloc(canTars * sizeof(Tar*));
+    cargar(pendientes,canTars);
+    printf("Tareas Pendientes");
+    mostrar(pendientes,canTars);
+    printf("Tareas Realizadas");
+    mostrar(realizadas,canTars);
 
 }
-void cargar(T_tarea ** tareas,int cant_tareas){
-    for(int i=0;i<cant_tareas;i++){
+void cargar(Tar ** tareas,int canTars){
+    for(int i=0;i<canTars;i++){
         char aux[100];
-        tareas[i]=(T_tarea*)malloc(sizeof(T_tarea));
+        tareas[i]=(Tar*)malloc(sizeof(Tar));
         tareas[i]->TareaID=i+1;
-        printf("ingrese: %d",i+1);
+        printf("ingrese: %d: ",i+1);
         scanf("%s",aux);
         tareas[i]->Descripcion=(char*)malloc(strlen(aux)+1 *sizeof(char));
         strcpy(tareas[i]->Descripcion,aux);
@@ -40,14 +40,33 @@ void cargar(T_tarea ** tareas,int cant_tareas){
 
     }
 }
-void mostrar(T_tarea** tareas,int cant_tareas){
-    for (int i = 0; i < cant_tareas; i++)
+void mostrar(Tar** tareas,int canTars){
+    for (int i = 0; i < canTars; i++)
     {
         if(tareas[i]!=NULL){
-            printf("ID: \n",tareas[i]->TareaID);
-            printf("descripcion: \n",tareas[i]->Descripcion);
-            printf("duracion: \n",tareas[i]->Duracion);
+            printf("ID: %d\n",tareas[i]->TareaID);
+            printf("descripcion: %s\n",tareas[i]->Descripcion);
+            printf("duracion: %d\n",tareas[i]->Duracion);
         }
     }
     
+}
+void ord(Tar ** tareas,Tar ** tareas_reali,int canTars)
+{
+    for (int i = 0; i < canTars; i++)
+    {
+        char aux[3];
+        /* printf("completo? tarea: %s (eSI/NO)\n",i+1,tareas[i]->Descripcion); scanf("%s",aux);
+        if (strcmp(aux,"SI") == 0 || strcmp(aux,"si") == 0 || strcmp(aux,"Si") == 0)
+        {
+            tareas_reali[i]= (Tar*)malloc(sizeof(Tar));
+            tareas_reali[i]= tareas[i];
+            tareas[i]=NULL;
+        }
+        else
+        {
+            tareas_reali[i]=NULL;
+        }  
+		*/ 
+    }
 }
